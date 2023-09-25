@@ -1,7 +1,6 @@
 package com.dinesh.appz.restaurant.controller;
 
 import com.dinesh.appz.restaurant.dto.RestaurantDto;
-import com.dinesh.appz.restaurant.entity.Restaurant;
 import com.dinesh.appz.restaurant.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,15 +30,15 @@ public class RestaurantController {
     }
 
     @PostMapping("/addRestaurant")
-    public ResponseEntity<RestaurantDto> addRestaurant(@RequestBody Restaurant restaurant) {
-        log.info("MSG='Adding restaurant', restaurant={}", restaurant);
-        return restaurantService.addRestaurant(restaurant);
+    public ResponseEntity<RestaurantDto> addRestaurant(@RequestBody RestaurantDto restaurantDto) {
+        log.info("MSG='Adding restaurant', restaurantDto={}", restaurantDto);
+        return restaurantService.addRestaurant(restaurantDto);
     }
 
     @PutMapping("/updateRestaurant")
-    public ResponseEntity<?> updateRestaurant(@RequestBody Restaurant restaurant) {
-        log.info("MSG='Updating restaurant', restaurant={}", restaurant);
-        return restaurantService.updateRestaurant(restaurant);
+    public ResponseEntity<?> updateRestaurant(@RequestBody RestaurantDto restaurantDto) {
+        log.info("MSG='Updating restaurant', restaurantDto={}", restaurantDto);
+        return restaurantService.updateRestaurant(restaurantDto);
     }
 
     @DeleteMapping("/delete/{id}")

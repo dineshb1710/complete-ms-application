@@ -37,9 +37,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public ResponseEntity<RestaurantDto> addRestaurant(Restaurant restaurant) {
-        log.info("MSG='Adding restaurant to the database', restaurant={}", restaurant);
-        Restaurant savedRestaurant = restaurantRepository.save(restaurant);
+    public ResponseEntity<RestaurantDto> addRestaurant(RestaurantDto restaurantDto) {
+        log.info("MSG='Adding restaurant to the database', restaurantDto={}", restaurantDto);
+        Restaurant savedRestaurant = restaurantRepository.save(restaurantMapper.dtoToEntity(restaurantDto));
         return new ResponseEntity<>(restaurantMapper.entityToDto(savedRestaurant), CREATED);
     }
 
@@ -50,14 +50,14 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public ResponseEntity<?> updateRestaurant(Restaurant restaurant) {
-        log.info("MSG='Updating restaurant to the database, restaurant={}'", restaurant);
-        if (restaurant.getId() == 0) {
+    public ResponseEntity<?> updateRestaurant(RestaurantDto restaurantDto) {
+        log.info("MSG='Updating restaurant to the database, restaurantDto={}'", restaurantDto);
+        if (restaurantDto.getId() == 0) {
             return ResponseEntity.internalServerError()
                     .body(new ResponseMessage("Cannot update as the request doesn't consist of a valid id"));
 
         }
-        Restaurant updatedRestaurant = restaurantRepository.save(restaurant);
+        Restaurant updatedRestaurant = restaurantRepository.save(restaurantMapper.dtoToEntity(restaurantDto));
         return new ResponseEntity<>(restaurantMapper.entityToDto(updatedRestaurant), ACCEPTED);
     }
 
