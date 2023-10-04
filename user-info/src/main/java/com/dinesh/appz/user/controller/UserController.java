@@ -21,7 +21,7 @@ public class UserController {
         return userService.addUser(userDto);
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/fetch/{id}")
     public ResponseEntity<UserDto> findUserById(@PathVariable int id) {
         log.info("MSG='Find user', Id={}", id);
         return userService.find(id);
