@@ -23,7 +23,7 @@ public class FoodCatalogueController {
         return foodCatalogueService.addFoodItem(foodItem);
     }
 
-    @GetMapping("/fetchFoodCatalogue/{restaurantId}")
+    @GetMapping("/fetch/{restaurantId}")
     public ResponseEntity<FoodCataloguePage> addFoodItem(@PathVariable int restaurantId) {
         log.info("MSG='Fetch Food Items', restaurantId={}", restaurantId);
         return foodCatalogueService.fetchFoodCatalogueByRestaurantId(restaurantId);
